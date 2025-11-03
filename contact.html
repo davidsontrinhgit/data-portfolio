@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Data Analytics Portfolio</title>
+  <meta name="description" content="Get in touch.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="22" height="22"><span>Davidson Trinh | Rutgers Business School | Supply Chain Managament</span></a>
+      <nav class="nav-links">
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a aria-current="page" href="contact.html">Contact</a>
+        <button id="theme" aria-label="Toggle theme">◐</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="projects-hero">
+      <h1>Contact</h1>
+      <p class="lede">Reach out for collaborations, roles, or questions.</p>
+    </section>
+
+    <section style="max-width:720px;margin:0 auto 60px">
+      <div class="card-like">
+        <h3 style="margin-top:0">Email</h3>
+        <p>
+          <a id="email-link" href="mailto:email@example.com">email@example.com</a>
+          <button id="copy-email" class="btn btn-ghost" style="margin-left:8px">Copy</button>
+        </p>
+        <h3>Links</h3>
+        <ul>
+          <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" target="_blank" rel="noopener">X / Twitter</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="yr"></span> Davidson Trinh</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const btn = document.getElementById('copy-email');
+    if(btn){
+      btn.addEventListener('click', async () => {
+        const email = 'email@example.com';
+        try { await navigator.clipboard.writeText(email); btn.textContent = 'Copied'; setTimeout(()=>btn.textContent='Copy', 1200); }
+        catch(e){ window.prompt('Copy email:', email); }
+      });
+    }
+  </script>
+</body>
+</html>

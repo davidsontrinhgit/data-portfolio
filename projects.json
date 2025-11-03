@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "demand-forecasting-prophet",
+    "title": "SKU Demand Forecasting",
+    "date": "2025-07-10",
+    "summary": "Prophet + regressors; rolling-origin backtest. MAPE \u2193 14%.",
+    "thumb": "assets/thumb-forecast.png",
+    "link": "projects/demand-forecasting-prophet.html"
+  },
+  {
+    "slug": "powerbi-ops-dashboard",
+    "title": "Operations Dashboard (Power BI)",
+    "date": "2025-06-02",
+    "summary": "OTIF, turns, supplier reliability with RLS and refresh.",
+    "thumb": "assets/thumb-powerbi.png",
+    "link": "projects/powerbi-ops-dashboard.html"
+  }
+]

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Analytics Portfolio</title>
+  <meta name="description" content="Monochrome portfolio with frosted, centered hero image and tile project grid.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" width="22" height="22"><span>Davidson Trinh | Rutgers Business School | Supply Chain Managament</span></a>
+      <nav class="nav-links">
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+        <button id="theme" aria-label="Toggle theme">◐</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+      <h1 class="hero-title same-serif anim-hero" aria-live="polite">
+        <span id="w-turning" class="token">Turning</span>
+        <span id="w-data" class="token dashable"> Bloated Data</span>
+        <span id="w-into" class="token"> into </span>
+        <span id="w-scd" class="token word-italic">Supply Chain Decisions</span>
+        <span id="w-bang" class="token">!</span>
+      </h1>
+        <p class="lede">Dashboards, Models, and Automation — built with no investment, streamlining Supply Chain Analytics, exactly where Supply Chain Teams stand — real value no cost.</p>
+        <a class="btn" href="projects.html">View projects</a>
+      </div>
+      <div class="stage">
+        <img class="hero-wall" src="assets/wallpaper.jpg" alt="Backdrop">
+        <div class="edge-frost"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="yr"></span> Davidson Trinh</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Helper: split a token into letter spans (.ch) and mark token as "split"
+    function splitToLetters(el){
+      if(!el) return [];
+      const text = el.textContent;
+      el.textContent = '';
+      el.classList.add('split');
+      const chars = [];
+      for (const ch of text){
+        const span = document.createElement('span');
+        span.className = 'ch';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        el.appendChild(span);
+        chars.push(span);
+      }
+      return chars;
+    }
+
+    // Cascade letter drops with a small stagger; returns end time
+    function cascadeDrop(chars, start=0, interval=35){
+      chars.forEach((c,i)=> setTimeout(()=> c.classList.add('drop'), start + i*interval));
+      return start + chars.length*interval;
+    }
+
+    // Grab elements
+    const turning = document.getElementById('w-turning');
+    const data    = document.getElementById('w-data');
+    const into    = document.getElementById('w-into');
+    const scd     = document.getElementById('w-scd');
+    const bang    = document.getElementById('w-bang');
+
+    // Prepare: split into letters (not the bang)
+    const chTurning = splitToLetters(turning);
+    const chData    = splitToLetters(data);
+    const chInto    = splitToLetters(into);
+    const chScd     = splitToLetters(scd);
+
+    // Start timeline
+    let t = 0;
+
+    // Turning letters drop
+    t = cascadeDrop(chTurning, t, 35);        t += 150;
+
+    // "Bloated Data" letters (normal color)
+    t = cascadeDrop(chData, t, 35);           t += 120;
+
+    // Turn Data red
+    setTimeout(()=> data.classList.add('red'), t);     t += 220;
+
+    // Draw cross line
+    setTimeout(()=> data.classList.add('strike'), t);  t += 320;
+
+    // "into"
+    t = cascadeDrop(chInto, t, 30);           t += 160;
+
+    // "Supply Chain Decisions" letters, then slam the whole phrase
+    t = cascadeDrop(chScd, t, 28);
+    setTimeout(()=> scd.classList.add('slam'), t + 100);
+    t += 400;
+
+    // BIG "!" — show, then giant shake + slam
+    setTimeout(()=> {
+      bang.classList.add('show');           // make visible
+      bang.classList.add('bang-slamshake'); // animate
+    }, t);
+
+    // Optional: expose a replay function
+    window.playHeadline = function(){
+      // Reset letters
+      [turning,data,into,scd].forEach(token=>{
+        if(!token) return;
+        token.classList.remove('red','strike','slam');
+        token.querySelectorAll('.ch').forEach(ch=> ch.classList.remove('drop'));
+        void token.offsetWidth; // reflow
+      });
+      bang.classList.remove('show','bang-slamshake');
+      void bang.offsetWidth;
+
+      // Replay
+      t = 0;
+      t = cascadeDrop(chTurning, t, 35);        t += 150;
+      t = cascadeDrop(chData, t, 35);           t += 120;
+      setTimeout(()=> data.classList.add('red'), t);     t += 220;
+      setTimeout(()=> data.classList.add('strike'), t);  t += 320;
+      t = cascadeDrop(chInto, t, 30);           t += 160;
+      t = cascadeDrop(chScd, t, 28);
+      setTimeout(()=> scd.classList.add('slam'), t + 100);
+      t += 400;
+      setTimeout(()=> { bang.classList.add('show'); bang.classList.add('bang-slamshake'); }, t);
+    };
+  </script>
+</body>
+</body>
+</html>
