@@ -1,4 +1,4 @@
-# BW Zen Portfolio — with Contact & Résumé pages
+# Data Projects Portfolio (WIP)
 
 Pages:
 - index.html — hero with centered frosted image and CTA
